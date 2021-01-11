@@ -14,8 +14,8 @@ from core.erp.models import Type, Employee
 # obj = Type.objects.filter(name__endswith='o').exclude(id=1)
 # for obj in Type.objects.filter(name__startswith='P'):
 #     print(obj.name)
-
-Employee.objects.filter(type_id = 1)
+#Hola mundo
+#Employee.objects.filter(type_id = 1)
 
 
 # #Insersion

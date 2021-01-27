@@ -1,0 +1,25 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+    <tr>
+        <th scope="col">Número</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acciones</th>
+    </tr>
+{% endblock %}
+
+
+{% block rows %}
+    {% for c in categories %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.name }}</td>
+            <td>
+                <button type="button" class="btn btn-success btn-sm"><i class="far fa-edit"></i></button>
+                <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+

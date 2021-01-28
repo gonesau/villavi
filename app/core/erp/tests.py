@@ -1,38 +1,11 @@
-from django.test import TestCase
-from app.wsgi import  *
-from core.erp.models import Type, Employee
+from app.wsgi import *
+from core.erp.models import *
 
-# #Listar
-# query = Type.objects.all()
-# print(query)
+data = ['Leche y derivados', 'Carnes, pescados y huevos', 'Patatas, legumbres, frutos secos',
+        'Verduras y Hortalizas', 'Frutas', 'Cereales y derivados, azúcar y dulces',
+        'Grasas, aceite y mantequilla']
 
-#obj = Type.objects.filter(name__icontains='hel')
-# obj = Type.objects.filter(name__startswith='P')
-# obj = Type.objects.filter(name__endswith='e')
-#obj = Type.objects.filter(name__in=['Hello'])
-#obj = Type.objects.all().count()
-# obj = Type.objects.filter(name__endswith='o').exclude(id=1)
-# for obj in Type.objects.filter(name__startswith='P'):
-#     print(obj.name)
-#Hola mundo
-#Employee.objects.filter(type_id = 1)
-
-
-# #Insersion
-# t = Type(name='Hello')
-# #t.name = 'Prueba'
-# t.save()
-
-# #Edición
-# try:
-#     t= Type.objects.get(id=45)
-#     t.name = 'Accionista'
-#     print((t.name))
-# except Exception as e:
-#     print(e)
-
-# #Eliminar
-# t = Type.objects.get(id =2)
-# t.delete()
-
-
+for i in data:
+    cat = Category(name=i)
+    cat.save()
+    print('Guardado registro N°{}'.format(cat.id))

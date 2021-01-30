@@ -33,7 +33,7 @@
             </table>
         </div>
         <div class="card-footer">
-            <button class="btn btn-primary ">
+            <button class="btn btn-primary btnTest">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </button>
         </div>
@@ -43,7 +43,26 @@
 {% block javascript %}
     <script type="application/javascript">
         $(function (){
-            $('#data').DataTable();
-        })
+            $('#data').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+
+            $('.btnTest').on('click',function () {
+                $.ajax({
+                    url: '{% url "erp:category_list" %}',
+                    type: 'POST',
+                    data: {id: 5},
+                    data_type: 'json'
+                }).done(function (data){
+                    console.log(data)
+                }).fail(function ( jqXHR,  textStatus,  errorThrown){
+                    alert(textStatus+' : ' + errorThrown);
+                }).always(function (data){
+
+                })
+            });
+        });
+
     </script>
 {% endblock %}

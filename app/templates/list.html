@@ -32,11 +32,9 @@
             </table>
         </div>
         <div class="card-footer">
-            <a href="{% url 'erp:category_create' %}">
-                <button class="btn btn-primary btnTest">
+                <a href="{{ create_url }}" class="btn btn-primary btnTest">
                         <i class="fas fa-plus"></i> Nuevo Registro
-                </button>
-            </a>
+                </a>
         </div>
     </div>
 {% endblock %}

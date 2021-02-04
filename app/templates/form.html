@@ -56,5 +56,24 @@
                 confirmButtonText: 'Aceptar'
             });
         {% endif %}
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var parameters = $(this).serializeArray();
+
+            $.ajax({
+                url: '{% url "erp:category_create" %}',
+                type: 'POST',
+                data: {id: 5},
+                data_type: 'json'
+            }).done(function (data) {
+                console.log(data)
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ' : ' + errorThrown);
+            }).always(function (data) {
+
+            })
+        });
+
     </script>
 {% endblock %}

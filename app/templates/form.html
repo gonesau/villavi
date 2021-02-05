@@ -12,7 +12,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 {% csrf_token %}
-
+                <input type="hidden" name="action" value="{{ action }}">
                 {% if form.errors %}
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -64,14 +64,17 @@
             $.ajax({
                 url: '{% url "erp:category_create" %}',
                 type: 'POST',
-                data: {id: 5},
+                data: parameters,
                 data_type: 'json'
             }).done(function (data) {
-                console.log(data)
+                if(!data.hasOwnProperty('error')){
+                    Location.href = '{{ list_url }}';
+                    return false;
+                }
+                message_error(data.error);
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + ' : ' + errorThrown);
             }).always(function (data) {
-
             })
         });
 

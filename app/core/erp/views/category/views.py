@@ -28,17 +28,23 @@ class CategoryListView(ListView):
     def post(self, request, *args, **kwargs):
         data = {}
         try:
-            data = Category.objects.get(pk=request.POST['id']).toJSON()
+            action = request.POST['action']
+            if action == 'searchdata':
+                data = []
+                for i in Category.objects.all():
+                    data.append(i.toJSON())
+            else:
+                data['error'] = 'Ha ocurrido un error'
         except Exception as e:
             data['error'] = str(e)
-        return JsonResponse(data)
+        return JsonResponse(data, safe=False)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado de Categorías'
         context['create_url'] = reverse_lazy('erp:category_create')
         context['list_url'] = reverse_lazy('erp:category_list')
-        context['entity'] = 'Categorías'
+        context['entity'] = 'Categorias'
         return context
 
 
@@ -57,11 +63,11 @@ class CategoryCreateView(CreateView):
                 data = form.save()
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
-            data = Category.objects.get(pk=request.POST['id']).toJSON()
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data)
 
+    #     print(request.POST)
     #     form = CategoryForm(request.POST)
     #     if form.is_valid():
     #         form.save()
@@ -71,10 +77,10 @@ class CategoryCreateView(CreateView):
     #     context['form'] = form
     #     return render(request, self.template_name, context)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación de Categoría'
+        context['title'] = 'Creación una Categoria'
+        context['entity'] = 'Categorias'
         context['list_url'] = reverse_lazy('erp:category_list')
-        context['entity'] = 'Categorías'
         context['action'] = 'add'
         return context

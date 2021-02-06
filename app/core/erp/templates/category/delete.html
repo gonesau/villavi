@@ -1,0 +1,44 @@
+{% extends 'body.html' %}
+{% load static %}
+{% block content %}
+    <form method="post">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-plus"> </i>
+                    {{ title }}
+                </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i>Error al crear un nuevo registro</h4>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="alert alert-danger alert-dismissible">
+                    <h4><i class="icon fa fa-ban"></i> Notificación!</h4>
+                    ¿Está seguro que desea eliminar la categoría "{{ object.name }}"?
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success btn-flat">
+                    <i class="fas fa-check-circle"></i> Si, Aceptar
+                </button>
+                <a href="{{ list_url }}" class="btn btn-secondary btn-flat">
+                    <i class="fas fa-window-close"></i> Cancelar
+                </a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

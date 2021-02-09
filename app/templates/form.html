@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
     <form method="post" action=".">
-        <div class="card card-primary">
+        <div class="card card-gray">
             <div class="card-header">
                 <h3 class="card-title">
                     {% if action == 'add' %}
@@ -38,7 +38,7 @@
                 {% endfor %}
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-flat">
+                <button type="submit" class="btn btn-success btn-flat">
                     <i class="fas fa-save"></i> Guardar registro
                 </button>
             </div>

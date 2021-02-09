@@ -1,4 +1,4 @@
-{% extends 'body.html' %}
+{% extends 'layout.html' %}
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
@@ -12,21 +12,22 @@
     {% block head_list %}
 
     {% endblock %}
-    
+
 {% endblock %}
+
 {% block content %}
-    <div class="card card-default">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
-                <i class="fas fa-list"></i>
+                <i class="fas fa-search"></i>
                 {{ title }}
             </h3>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <table class="table" id="data">
-                <thead class="thead-light">
+                <thead>
                 {% block columns %}
+
                 {% endblock %}
                 </thead>
                 <tbody>
@@ -37,36 +38,35 @@
             </table>
         </div>
         <div class="card-footer">
-                <a href="{{ create_url }}" class="btn btn-primary btnTest">
-                        <i class="fas fa-plus"></i> Nuevo Registro
-                </a>
+            <a href="{{ create_url }}" class="btn btn-primary btn-flat btnTest">
+                <i class="fas fa-plus"></i> Nuevo registro
+            </a>
         </div>
     </div>
 {% endblock %}
 
 {% block javascript %}
     <script type="application/javascript">
-        $(function (){
+        $(function () {
             $('#data').DataTable({
                 responsive: true,
                 autoWidth: false
             });
 
-            $('.btnTest').on('click',function () {
+            $('.btnTest').on('click', function () {
                 $.ajax({
-                    url: '{% url "erp:category_list" %}',
+                    url: '{% url 'erp:category_list' %}',
                     type: 'POST',
-                    data: {id: 5},
-                    data_type: 'json'
-                }).done(function (data){
-                    console.log(data)
-                }).fail(function ( jqXHR,  textStatus,  errorThrown){
-                    alert(textStatus+' : ' + errorThrown);
-                }).always(function (data){
+                    data: {id: 1},
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus + ': ' + errorThrown);
+                }).always(function (data) {
 
-                })
+                });
             });
         });
-
     </script>
 {% endblock %}

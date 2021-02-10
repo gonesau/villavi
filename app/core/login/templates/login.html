@@ -24,14 +24,14 @@
     </div>
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Ingresa tus credendiales para iniciar sesión</p>
             <form action="." method="post">
                 {% csrf_token %}
                 <div class="input-group mb-3">
                     {{ form.username|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su username' }}
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-user-alt"></span>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-door-open"></i> Iniciar sesión
+                            <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                         </button>
                     </div>
                 </div>

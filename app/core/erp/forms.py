@@ -26,7 +26,7 @@ class CategoryForm(ModelForm):
             ),
             'desc': Textarea(
                 attrs={
-                    'placeholder': 'Ingrese un nombre',
+                    'placeholder': 'Ingrese una descripción',
                     'rows': 3,
                     'cols': 3
                 }
@@ -45,9 +45,9 @@ class CategoryForm(ModelForm):
             data['error'] = str(e)
         return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['name']) <= 50:
-            #raise forms.ValidationError('Validación x')
-            #self.add_error('name', 'Le hacen falta caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['name']) <= 50:
+    #         #raise forms.ValidationError('Validación x')
+    #         #self.add_error('name', 'Le hacen falta caracteres')
+    #     return cleaned

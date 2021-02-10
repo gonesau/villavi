@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #MyApps
     'core.erp',
-    'core.homepage'
+    'core.homepage',
+    'core.login',
 ]
 
 MIDDLEWARE = [

@@ -49,7 +49,6 @@ class CategoryCreateView(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -106,6 +105,7 @@ class CategoryUpdateView(UpdateView):
         context['action'] = 'edit'
         return context
 
+
 class CategoryDeleteView(DeleteView):
     model = Category
     template_name = 'category/delete.html'
@@ -138,9 +138,13 @@ class CategoryFormView(FormView):
     success_url = reverse_lazy('erp:category_list')
 
     def form_valid(self, form):
+        print(form.is_valid())
+        print(form)
         return super().form_valid(form)
 
     def form_invalid(self, form):
+        print(form.is_valid())
+        print(form.errors)
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):

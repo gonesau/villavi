@@ -45,7 +45,7 @@
             e.preventDefault();
             var parameters = $(this).serializeArray();
 
-            submit_with_ajax(window.location.pathname, parameters, function () {
+            submit_with_ajax(window.location.pathname, 'Alerta', '¿Estas seguro de eliminar ese registro?', parameters, function () {
                 location.href = '{{ list_url }}';
             });
         });

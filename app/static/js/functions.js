@@ -16,13 +16,13 @@ function message_error(obj) {
     });
 }
 
-function submit_with_ajax(url, parameters, callback) {
+function submit_with_ajax(url, title, content, parameters, callback) {
     $.confirm({
         theme: 'material',
-        title: 'Confirmación',
+        title: title,
         icon: 'fa fa-info',
-        content: '¿Estás seguro de realizar la siguiente acción?',
-        columnClass: 'medium',
+        content: content,
+        columnClass: 'small',
         typeAnimated: true,
         cancelButtonClass: 'btn-primary',
         draggable: true,
@@ -30,13 +30,13 @@ function submit_with_ajax(url, parameters, callback) {
         buttons: {
             info: {
                 text: "Si",
-                btnClass: 'btn-primary',
+                btnClass: 'btn-success',
                 action: function () {
                     $.ajax({
-                        url: url,
+                        url: url, //window.location.pathname
                         type: 'POST',
                         data: parameters,
-                        dataType: 'json'
+                        dataType: 'json',
                     }).done(function (data) {
                         console.log(data);
                         if (!data.hasOwnProperty('error')) {

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.forms import model_to_dict
+from app.settings import MEDIA_URL, STATIC_URL
 from core.erp.choices import gender_choices
 
 class Category(models.Model):
@@ -28,6 +29,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_image(self):
+        if self.image:
+            return '{}{}'.format(MEDIA_URL, self.image)
+        return '{}{}'.format(STATIC_URL, 'img/empty.png')
 
     class Metas:
         verbose_name = 'Producto'
